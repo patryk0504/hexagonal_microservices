@@ -1,4 +1,4 @@
-package com.courier.adapter.out.persistence;
+package com.courier.management.parcel.adapter.out.persistence;
 
 import lombok.Getter;
 import lombok.Setter;
