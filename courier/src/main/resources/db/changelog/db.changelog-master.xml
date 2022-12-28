@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="create-users-table" author="patryk">
+        <createTable tableName="users">
+            <column name="user_id" type="integer" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="text"/>
+            <column name="email" type="text"/>
+            <column name="password" type="text"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-couriers-table" author="patryk">
+        <createTable tableName="couriers">
+            <column name="courier_id" type="integer" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="text"/>
+            <column name="phone" type="text"/>
+            <column name="vehicle" type="text"/>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="create-packages-table" author="patryk">
+        <createTable tableName="packages">
+            <column name="package_id" type="integer" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="integer"/>
+            <column name="courier_id" type="integer"/>
+            <column name="sender_name" type="text"/>
+            <column name="sender_address" type="text"/>
+            <column name="recipient_name" type="text"/>
+            <column name="recipient_address" type="text"/>
+            <column name="status" type="text"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="packages"
+                                 constraintName="fk_packages_user_id"
+                                 referencedColumnNames="user_id"
+                                 referencedTableName="users"
+                                 onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseColumnNames="courier_id"
+                                 baseTableName="packages"
+                                 constraintName="fk_packages_courier_id"
+                                 referencedColumnNames="courier_id"
+                                 referencedTableName="couriers"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+
+</databaseChangeLog>

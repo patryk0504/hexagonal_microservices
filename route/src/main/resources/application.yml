@@ -1,0 +1,9 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: route
+
+route:
+  apiKey: "AIzaSyDSkt8yTtkKAzV6_fphCe-3ZiFEzFCXETY"
