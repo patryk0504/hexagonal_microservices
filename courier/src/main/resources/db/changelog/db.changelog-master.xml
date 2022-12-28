@@ -3,10 +3,12 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-    <changeSet id="create-users-table" author="patryk">
-        <createTable tableName="users">
-            <column name="user_id" type="integer" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false"/>
+
+
+    <changeSet id="create-user-table" author="patryk">
+        <createTable tableName="user">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
             </column>
             <column name="name" type="text"/>
             <column name="email" type="text"/>
@@ -14,43 +16,76 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="create-couriers-table" author="patryk">
-        <createTable tableName="couriers">
-            <column name="courier_id" type="integer" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false"/>
+    <changeSet id="create-courier-table" author="patryk">
+        <createTable tableName="courier">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
             </column>
-            <column name="name" type="text"/>
-            <column name="phone" type="text"/>
-            <column name="vehicle" type="text"/>
+            <column name="name" type="varchar(255)"/>
+            <column name="email" type="varchar(255)"/>
+            <column name="phone" type="varchar(255)"/>
+            <column name="current_location" type="varchar(255)"/>
+            <column name="vehicle" type="varchar(255)"/>
+            <column name="status" type="varchar(255)"/>
         </createTable>
     </changeSet>
 
 
-    <changeSet id="create-packages-table" author="patryk">
-        <createTable tableName="packages">
-            <column name="package_id" type="integer" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false"/>
+    <changeSet id="create-parcel-table" author="patryk">
+        <createTable tableName="parcel">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
             </column>
-            <column name="user_id" type="integer"/>
-            <column name="courier_id" type="integer"/>
-            <column name="sender_name" type="text"/>
-            <column name="sender_address" type="text"/>
-            <column name="recipient_name" type="text"/>
-            <column name="recipient_address" type="text"/>
-            <column name="status" type="text"/>
+            <column name="user_id" type="bigint"/>
+            <column name="sender_name" type="varchar(255)"/>
+            <column name="sender_address" type="varchar(255)"/>
+            <column name="recipient_name" type="varchar(255)"/>
+            <column name="recipient_address" type="varchar(255)"/>
+            <column name="latitude" type="double"/>
+            <column name="longitude" type="double"/>
+            <column name="delivery_date" type="date"/>
+            <column name="delivery_time" type="time"/>
+            <column name="status" type="varchar(255)"/>
+            <column name="weight" type="decimal"/>
+            <column name="courier_id" type="bigint"/>
         </createTable>
         <addForeignKeyConstraint baseColumnNames="user_id"
-                                 baseTableName="packages"
-                                 constraintName="fk_packages_user_id"
-                                 referencedColumnNames="user_id"
-                                 referencedTableName="users"
+                                 baseTableName="parcel"
+                                 constraintName="fk_parcels_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user"
                                  onDelete="CASCADE"/>
         <addForeignKeyConstraint baseColumnNames="courier_id"
-                                 baseTableName="packages"
-                                 constraintName="fk_packages_courier_id"
-                                 referencedColumnNames="courier_id"
-                                 referencedTableName="couriers"
+                                 baseTableName="parcel"
+                                 constraintName="fk_parcels_courier_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="courier"
                                  onDelete="CASCADE"/>
+    </changeSet>
+
+    <changeSet id="create-delivery-table" author="patryk">
+        <createTable tableName="delivery">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="parcel_id" type="bigint"/>
+            <column name="courier_id" type="bigint"/>
+            <column name="start_time" type="datetime"/>
+            <column name="end_time" type="datetime"/>
+            <column name="status" type="varchar(255)"/>
+            <column name="notes" type="varchar(255)"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="parcel_id"
+                                 baseTableName="delivery"
+                                 referencedColumnNames="id"
+                                 referencedTableName="parcel"
+                                 constraintName="fk_delivery_parcel"/>
+        <addForeignKeyConstraint baseColumnNames="courier_id"
+                                 baseTableName="delivery"
+                                 referencedColumnNames="id"
+                                 referencedTableName="courier"
+                                 constraintName="fk_delivery_courier"/>
     </changeSet>
 
 </databaseChangeLog>

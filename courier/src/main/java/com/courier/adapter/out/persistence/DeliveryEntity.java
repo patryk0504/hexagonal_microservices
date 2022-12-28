@@ -18,7 +18,7 @@ class DeliveryEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "package_id")
+    @JoinColumn(name = "parcel_id")
     private ParcelEntity parcel;
 
     @ManyToOne(fetch = FetchType.LAZY)
