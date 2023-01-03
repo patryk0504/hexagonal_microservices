@@ -23,6 +23,7 @@
     <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
     <org.slf4j.version>2.0.4</org.slf4j.version>
     <postgres.version>42.5.1</postgres.version>
+    <org.spring.boot.devtools>3.0.1</org.spring.boot.devtools>
   </properties>
 
   <dependencyManagement>
@@ -63,9 +64,16 @@
       <artifactId>mapstruct</artifactId>
       <version>${org.mapstruct.version}</version>
     </dependency>
+    <!--    &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools &ndash;&gt;-->
+    <!--    <dependency>-->
+    <!--      <groupId>org.springframework.boot</groupId>-->
+    <!--      <artifactId>spring-boot-devtools</artifactId>-->
+    <!--      <version>${org.spring.boot.devtools}</version>-->
+    <!--    </dependency>-->
   </dependencies>
 
   <build>
+    <finalName>courier-management-services</finalName>
     <pluginManagement>
       <plugins>
         <plugin>

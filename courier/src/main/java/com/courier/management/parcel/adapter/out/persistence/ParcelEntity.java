@@ -4,7 +4,16 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.Hibernate;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -38,15 +47,6 @@ class ParcelEntity {
 
     enum PackageStatus {
         IN_TRANSIT, DELIVERED, RETURNED
-    }
-
-
-    @Embeddable
-    @Getter
-    @Setter
-    static class GeoAddress {
-        private double latitude;
-        private double longitude;
     }
 
     @Override

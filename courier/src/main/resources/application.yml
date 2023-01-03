@@ -10,7 +10,7 @@ spring:
     password: postgres
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create-drop
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
@@ -18,7 +18,8 @@ spring:
     show-sql: true
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.xml
-    enabled: true
+    #    to be enabled when entites won't change (production phase)
+    enabled: false
 #  zipkin:
 #    base-url: http://localhost:9411
 #  rabbitmq:
