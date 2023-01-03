@@ -6,8 +6,6 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,66 +18,39 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "courier_table")
-class CourierEntity {
-
+@Table(name = "user_table")
+class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
-    private String name;
-    private String email;
-    private String phone;
-    private String currentLocation;
-    private String vehicle;
+    String name;
+    String email;
+    String password;
 
     @OneToMany(
-            mappedBy = "parcel",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private Set<DeliveryEntity> deliveries = new HashSet<>();
-
-    @OneToMany(
-            mappedBy = "courier",
+            mappedBy = "sender",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
     private Set<ParcelEntity> parcels = new HashSet<>();
 
-    @Enumerated(EnumType.STRING)
-    private CourierStatus status;
-
-
-    public void addDelivery(DeliveryEntity delivery) {
-        deliveries.add(delivery);
-        delivery.setCourier(this);
-    }
-
-    public void removeDelivery(DeliveryEntity delivery) {
-        deliveries.remove(delivery);
-        delivery.setCourier(null);
-    }
 
     public void addParcel(ParcelEntity parcel) {
         parcels.add(parcel);
-        parcel.setCourier(this);
+        parcel.setSender(this);
     }
 
     public void removeParcel(ParcelEntity parcel) {
         parcels.remove(parcel);
-        parcel.setCourier(null);
-    }
-
-    enum CourierStatus {
-        AVAILABLE, ON_DELIVERY, OFF_DUTY
+        parcel.setSender(null);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        CourierEntity that = (CourierEntity) o;
+        UserEntity that = (UserEntity) o;
         return id != null && Objects.equals(id, that.id);
     }
 

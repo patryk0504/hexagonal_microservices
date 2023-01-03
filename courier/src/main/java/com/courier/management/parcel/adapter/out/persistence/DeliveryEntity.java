@@ -24,7 +24,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
-@Table(name = "delivery")
+@Table(name = "delivery_table")
 class DeliveryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

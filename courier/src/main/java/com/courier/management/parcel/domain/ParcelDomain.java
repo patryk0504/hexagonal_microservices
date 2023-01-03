@@ -1,4 +1,4 @@
-package com.courier.management.user.domain;
+package com.courier.management.parcel.domain;
 
 import lombok.Builder;
 import lombok.Value;
@@ -11,4 +11,5 @@ public class ParcelDomain {
     String weight;
     String dimensions;
     String notes;
+    UserDomain user;
 }

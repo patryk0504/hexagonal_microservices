@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @Entity
-@Table(name = "route")
+@Table(name = "route_table")
 class RouteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -22,7 +22,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
-@Table(name = "parcel")
+@Table(name = "parcel_table")
 class ParcelEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,6 +44,10 @@ class ParcelEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "courier_id")
     private CourierEntity courier;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private UserEntity sender;
 
     enum PackageStatus {
         IN_TRANSIT, DELIVERED, RETURNED
