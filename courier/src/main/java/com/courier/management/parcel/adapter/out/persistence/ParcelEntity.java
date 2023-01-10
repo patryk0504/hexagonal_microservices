@@ -15,8 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Getter
@@ -28,18 +27,19 @@ class ParcelEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
     private String senderName;
     private String senderAddress;
     private String recipientName;
     private String recipientAddress;
     private GeoAddress recipientGeoAddress;
-    private LocalDate deliveryDate;
-    private LocalTime deliveryTime;
+    private LocalDateTime deliveryDate;
 
     @Enumerated(EnumType.STRING)
-    private PackageStatus status;
+    private PackageStatus status = PackageStatus.CREATED;
 
     private BigDecimal weight;
+    private String dimensions;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "courier_id")
@@ -50,7 +50,7 @@ class ParcelEntity {
     private UserEntity sender;
 
     enum PackageStatus {
-        IN_TRANSIT, DELIVERED, RETURNED
+        CREATED, IN_TRANSIT, DELIVERED, RETURNED
     }
 
     @Override
