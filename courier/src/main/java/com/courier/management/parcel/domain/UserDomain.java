@@ -3,6 +3,7 @@ package com.courier.management.parcel.domain;
 import lombok.Builder;
 import lombok.Value;
 
+import java.util.Collections;
 import java.util.Set;
 
 @Builder
@@ -12,5 +13,6 @@ public class UserDomain {
     String name;
     String email;
     String password;
-    Set<ParcelDomain> parcels;
+    @Builder.Default
+    Set<ParcelDomain> parcels = Collections.emptySet();
 }

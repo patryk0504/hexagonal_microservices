@@ -3,6 +3,7 @@ package com.courier.management.parcel.domain;
 import lombok.Builder;
 import lombok.Value;
 
+import java.util.Collections;
 import java.util.Set;
 
 @Builder
@@ -14,7 +15,10 @@ public class CourierDomain {
     String phone;
     String currentLocation;
     String vehicle;
-    Set<DeliveryDomain> deliveries;
-    Set<ParcelDomain> parcels;
-    CourierStatusDomain status;
+    @Builder.Default
+    Set<DeliveryDomain> deliveries = Collections.emptySet();
+    @Builder.Default
+    Set<ParcelDomain> parcels = Collections.emptySet();
+    @Builder.Default
+    CourierStatusDomain status = CourierStatusDomain.AVAILABLE;
 }

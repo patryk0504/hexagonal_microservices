@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Value;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 @Builder
@@ -14,7 +15,9 @@ public class DeliveryDomain {
     CourierDomain courier;
     LocalDateTime startTime;
     LocalDateTime endTime;
-    DeliveryStatusDomain status;
+    @Builder.Default
+    DeliveryStatusDomain status = DeliveryStatusDomain.IN_PROGRESS;
     String notes;
-    List<RouteDomain> routes;
+    @Builder.Default
+    List<RouteDomain> routes = Collections.emptyList();
 }

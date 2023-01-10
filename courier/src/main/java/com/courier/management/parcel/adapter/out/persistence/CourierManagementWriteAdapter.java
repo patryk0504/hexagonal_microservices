@@ -15,5 +15,6 @@ public class CourierManagementWriteAdapter implements CourierManagementWritePort
     @Override
     public void createCourier(CourierDomain courierDomain) {
         CourierEntity courierEntity = courierDomainMapper.toCourierEntity(courierDomain);
+        courierRepository.save(courierEntity);
     }
 }
