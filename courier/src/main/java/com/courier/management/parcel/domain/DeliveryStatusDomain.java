@@ -1,5 +1,5 @@
 package com.courier.management.parcel.domain;
 
-enum DeliveryStatusDomain {
+public enum DeliveryStatusDomain {
     IN_PROGRESS, COMPLETED
 }

@@ -13,7 +13,6 @@ interface ParcelDomainMapper {
     @Mapping(target = "courier", ignore = true)
     @Mapping(target = "sender", ignore = true)
     @Mapping(target = "deliveryDate", ignore = true)
-    @Mapping(target = "deliveryTime", ignore = true)
     ParcelEntity toParcelEntity(ParcelDomain parcelDomain);
 
     @Mapping(target = "user", source = "sender.id")

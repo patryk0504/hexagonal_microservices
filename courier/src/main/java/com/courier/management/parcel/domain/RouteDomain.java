@@ -8,6 +8,6 @@ import lombok.Value;
 public class RouteDomain {
     Long id;
     DeliveryDomain delivery;
-    String location;
-    String notes;
+    GeoAddressDomain address;
+    int routeOrder;
 }
