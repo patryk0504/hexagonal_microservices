@@ -20,5 +20,7 @@ public class CourierDomain {
     @Builder.Default
     Set<ParcelDomain> parcels = Collections.emptySet();
     @Builder.Default
+    Set<RouteDomain> routes = Collections.emptySet();
+    @Builder.Default
     CourierStatusDomain status = CourierStatusDomain.AVAILABLE;
 }

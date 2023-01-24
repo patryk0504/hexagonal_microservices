@@ -47,6 +47,13 @@ class CourierEntity {
     )
     private Set<ParcelEntity> parcels = new HashSet<>();
 
+    @OneToMany(
+            mappedBy = "courier",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<RouteEntity> routes = new HashSet<>();
+
     @Enumerated(EnumType.STRING)
     private CourierStatus status;
 

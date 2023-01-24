@@ -7,6 +7,8 @@ import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.data.domain.Page;
 
+import java.util.Set;
+
 @Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR, componentModel = "spring")
 public interface ParcelDtoMapper {
     //TODO: we must pass user to which assign new parcel
@@ -16,6 +18,8 @@ public interface ParcelDtoMapper {
 
 
     ParcelDto toParcelDto(ParcelDomain parcelDomain);
+
+    Set<ParcelDto> toParcelDtoSet(Set<ParcelDomain> parcelDomainSet);
 
     default Page<ParcelDto> toParcelDtoPage(Page<ParcelDomain> parcelDomains) {
         return parcelDomains.map(this::toParcelDto);

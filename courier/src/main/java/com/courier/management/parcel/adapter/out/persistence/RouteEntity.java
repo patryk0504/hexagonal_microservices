@@ -25,6 +25,10 @@ class RouteEntity {
     @JoinColumn(name = "delivery_id")
     private DeliveryEntity delivery;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "courier_id")
+    private CourierEntity courier;
+
     private int routeOrder;
     private GeoAddress address;
 }

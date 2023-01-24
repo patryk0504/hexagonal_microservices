@@ -10,11 +10,21 @@ import org.springframework.stereotype.Service;
 public class CourierManagementWriteAdapter implements CourierManagementWritePort {
 
     private final CourierRepository courierRepository;
+    private final ParcelRepository parcelRepository;
     private final CourierDomainMapper courierDomainMapper;
 
     @Override
     public void createCourier(CourierDomain courierDomain) {
         CourierEntity courierEntity = courierDomainMapper.toCourierEntity(courierDomain);
+        courierRepository.save(courierEntity);
+    }
+
+    @Override
+    public void assignParcel(long courierId, long parcelId) {
+        CourierEntity courierEntity = courierRepository.findById(courierId).orElseThrow();
+        ParcelEntity parcelEntity = parcelRepository.findById(parcelId).orElseThrow();
+
+        courierEntity.addParcel(parcelEntity);
         courierRepository.save(courierEntity);
     }
 }

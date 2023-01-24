@@ -6,6 +6,8 @@ import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.data.domain.Page;
 
+import java.util.Set;
+
 @Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR, componentModel = "spring")
 interface ParcelDomainMapper {
     @Mapping(target = "id", ignore = true)
@@ -17,6 +19,8 @@ interface ParcelDomainMapper {
 
     @Mapping(target = "user", source = "sender.id")
     ParcelDomain toParcelDomain(ParcelEntity parcelEntity);
+
+    Set<ParcelDomain> toParcelDomainSet(Set<ParcelEntity> parcelEntitySet);
 
     default Page<ParcelDomain> toParcelDomainPage(Page<ParcelEntity> parcelEntities) {
         return parcelEntities.map(this::toParcelDomain);
