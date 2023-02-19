@@ -5,9 +5,12 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR, componentModel = "spring", uses = {ParcelDomainMapper.class, CourierDomainMapper.class})
+@Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR, componentModel = "spring", uses = {ParcelDomainMapper.class, RouteDomainMapper.class})
 public interface DeliveryDomainMapper {
 
-    @Mapping(target = "courier", source = "courier")
+    @Mapping(target = "courier", ignore = true)
     DeliveryEntity toDeliveryEntity(DeliveryDomain deliveryDomain);
+
+    @Mapping(target = "courierId", source = "courier.id")
+    DeliveryDomain toDeliveryDomain(DeliveryEntity deliveryEntity);
 }

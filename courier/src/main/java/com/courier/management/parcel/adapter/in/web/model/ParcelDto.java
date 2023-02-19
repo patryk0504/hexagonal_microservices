@@ -25,4 +25,5 @@ public class ParcelDto {
     private String recipientAddress;
     @NotNull(message = "recipientGeoAddress cannot be null")
     private GeoAddressDto recipientGeoAddress;
+    private String status;
 }

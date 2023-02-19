@@ -1,6 +1,5 @@
 package com.route.application.service.tsp;
 
-import com.route.adapter.in.web.model.AddressListDto;
 import com.route.application.service.DomainMapper;
 import com.route.application.service.google.api.GoogleApi;
 import com.route.domain.AddressDomain;
@@ -40,8 +39,8 @@ public class TspSimulatedAnnealing implements TspSimulatedAnnealingAlgorithm {
     // Losowe przemieszczenie miast w trasie
     private void randomSwap(List<AddressDomain> route) {
         Random r = new Random();
-        int a = r.nextInt(route.size());
-        int b = r.nextInt(route.size());
+        int a = r.nextInt(route.size() - 2) + 1; // exclude start and end points
+        int b = r.nextInt(route.size() - 2) + 1; // exclude start and end points
         AddressDomain cityA = route.get(a);
         AddressDomain cityB = route.get(b);
         route.set(a, cityB);
@@ -76,7 +75,7 @@ public class TspSimulatedAnnealing implements TspSimulatedAnnealingAlgorithm {
     }
 
     @Override
-    public TspRouteDomain calculateBestRoute(AddressListDto addressListDto) throws Exception {
-        return anneal(domainMapper.toTspRouteDomain(addressListDto).getRoute());
+    public TspRouteDomain calculateBestRoute(TspRouteDomain tspRouteDomain) throws Exception {
+        return anneal(tspRouteDomain.getRoute());
     }
 }

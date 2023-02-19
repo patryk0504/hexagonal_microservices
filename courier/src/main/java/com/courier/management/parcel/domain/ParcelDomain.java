@@ -15,5 +15,7 @@ public class ParcelDomain {
     GeoAddressDomain recipientGeoAddress;
     String weight;
     String dimensions;
+    @Builder.Default
+    ParcelStatusDomain status = ParcelStatusDomain.CREATED;
     Long user;
 }

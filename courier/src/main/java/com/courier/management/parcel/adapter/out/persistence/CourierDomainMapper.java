@@ -5,7 +5,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.data.domain.Page;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR, componentModel = "spring", uses = {ParcelDomainMapper.class})
+@Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR, componentModel = "spring", uses = {ParcelDomainMapper.class, DeliveryDomainMapper.class, RouteDomainMapper.class})
 interface CourierDomainMapper {
 
     CourierEntity toCourierEntity(CourierDomain courierDomain);

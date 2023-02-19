@@ -1,12 +1,14 @@
 package com.route.domain;
 
 import lombok.Builder;
-import lombok.Value;
+import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@Value
+@Data
 @Builder
 public class TspRouteDomain {
-    List<AddressDomain> route;
+    @Builder.Default
+    List<AddressDomain> route = new ArrayList<>();
 }

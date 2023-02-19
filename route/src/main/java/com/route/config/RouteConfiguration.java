@@ -1,4 +1,4 @@
-package com.route;
+package com.route.config;
 
 import com.google.maps.GeoApiContext;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

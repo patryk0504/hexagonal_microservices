@@ -10,4 +10,5 @@ import lombok.Getter;
 public class AddressDomain {
     double latitude;
     double longitude;
+    String address;
 }

@@ -10,13 +10,17 @@ import com.courier.management.parcel.application.port.in.GetCouriersUseCase;
 import com.courier.management.parcel.application.port.in.GetParcelForCourierUseCase;
 import com.courier.management.parcel.application.port.out.CourierManagementReadPort;
 import com.courier.management.parcel.application.port.out.CourierManagementWritePort;
+import com.courier.management.parcel.application.port.out.ParcelManagementReadPort;
 import com.courier.management.parcel.domain.CourierDomain;
 import com.courier.management.parcel.domain.ParcelDomain;
+import com.courier.management.parcel.domain.ParcelStatusDomain;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -25,6 +29,7 @@ public class CourierManagementService implements CreateCourierUseCase, GetParcel
 
     private final CourierManagementReadPort readPort;
     private final CourierManagementWritePort writePort;
+    private final ParcelManagementReadPort parcelManagementReadPort;
     private final CourierDtoMapper courierDtoMapper;
     private final ParcelDtoMapper parcelDtoMapper;
 
@@ -38,8 +43,21 @@ public class CourierManagementService implements CreateCourierUseCase, GetParcel
     @Transactional(readOnly = true)
     @Override
     public Set<ParcelDto> getParcelsForCourier(long courierId) {
-        Set<ParcelDomain> parcelDomains = readPort.getParcelsForCourier(courierId);
+        Set<ParcelDomain> parcelDomains = parcelManagementReadPort.getParcelsForCourier(courierId);
         return parcelDtoMapper.toParcelDtoSet(parcelDomains);
+    }
+
+    @Override
+    public Set<ParcelDto> getParcelsForCourierByStatus(long courierId, String status) {
+        Optional<ParcelStatusDomain> parcelStatusDomain = Optional.ofNullable(ParcelStatusDomain.fromString(status));
+
+        if (parcelStatusDomain.isPresent()) {
+            Set<ParcelDomain> parcelDomains = parcelManagementReadPort.getParcelsForCourierByStatus(courierId,
+                    parcelStatusDomain.get());
+            return parcelDtoMapper.toParcelDtoSet(parcelDomains);
+        }
+
+        return Collections.emptySet();
     }
 
     @Transactional

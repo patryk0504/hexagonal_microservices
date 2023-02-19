@@ -7,8 +7,8 @@ import lombok.Value;
 @Value
 public class RouteDomain {
     Long id;
-    DeliveryDomain delivery;
-    CourierDomain courier;
+    Long deliveryId;
+    Long courierId;
     GeoAddressDomain address;
     int routeOrder;
 }

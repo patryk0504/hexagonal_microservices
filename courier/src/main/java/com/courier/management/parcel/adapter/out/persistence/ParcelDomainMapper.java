@@ -1,6 +1,7 @@
 package com.courier.management.parcel.adapter.out.persistence;
 
 import com.courier.management.parcel.domain.ParcelDomain;
+import com.courier.management.parcel.domain.ParcelStatusDomain;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
@@ -21,6 +22,8 @@ interface ParcelDomainMapper {
     ParcelDomain toParcelDomain(ParcelEntity parcelEntity);
 
     Set<ParcelDomain> toParcelDomainSet(Set<ParcelEntity> parcelEntitySet);
+
+    ParcelEntity.ParcelStatus toParcelEntityStatus(ParcelStatusDomain parcelStatusDomain);
 
     default Page<ParcelDomain> toParcelDomainPage(Page<ParcelEntity> parcelEntities) {
         return parcelEntities.map(this::toParcelDomain);

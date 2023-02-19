@@ -8,6 +8,7 @@ import com.courier.management.parcel.application.port.in.CreateCourierUseCase;
 import com.courier.management.parcel.application.port.in.GetCouriersUseCase;
 import com.courier.management.parcel.application.port.in.GetParcelForCourierUseCase;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,8 +40,18 @@ public class CourierController {
         createCourierUseCase.createCourier(parcelDto);
     }
 
-    @GetMapping(path = "/{courier_id}/parcels")
+    @GetMapping(path = "/{courier_id}/parcels/{status}")
     Set<ParcelDto> getParcelsForCourier(
+            @PathVariable("courier_id") long courierId, @PathVariable(value = "status", required = false) String status) {
+        if (StringUtils.isEmpty(status)) {
+            return getParcels.getParcelsForCourier(courierId);
+        } else {
+            return getParcels.getParcelsForCourierByStatus(courierId, status);
+        }
+    }
+
+    @GetMapping(path = "/{courier_id}/parcels")
+    Set<ParcelDto> getAllParcelsForCourier(
             @PathVariable("courier_id") long courierId) {
         return getParcels.getParcelsForCourier(courierId);
     }

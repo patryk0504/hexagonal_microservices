@@ -36,7 +36,7 @@ class ParcelEntity {
     private LocalDateTime deliveryDate;
 
     @Enumerated(EnumType.STRING)
-    private PackageStatus status = PackageStatus.CREATED;
+    private ParcelStatus status = ParcelStatus.CREATED;
 
     private BigDecimal weight;
     private String dimensions;
@@ -49,7 +49,7 @@ class ParcelEntity {
     @JoinColumn(name = "user_id")
     private UserEntity sender;
 
-    enum PackageStatus {
+    enum ParcelStatus {
         CREATED, IN_TRANSIT, DELIVERED, RETURNED
     }
 

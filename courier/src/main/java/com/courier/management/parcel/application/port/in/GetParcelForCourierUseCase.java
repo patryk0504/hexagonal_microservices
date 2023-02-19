@@ -6,4 +6,7 @@ import java.util.Set;
 
 public interface GetParcelForCourierUseCase {
     Set<ParcelDto> getParcelsForCourier(long courierId);
+
+    Set<ParcelDto> getParcelsForCourierByStatus(long courierId, String status);
+
 }

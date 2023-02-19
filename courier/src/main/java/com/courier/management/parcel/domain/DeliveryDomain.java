@@ -12,7 +12,7 @@ import java.util.List;
 public class DeliveryDomain {
     Long id;
     ParcelDomain parcel;
-    CourierDomain courier;
+    Long courierId;
     LocalDateTime startTime;
     LocalDateTime endTime;
     @Builder.Default

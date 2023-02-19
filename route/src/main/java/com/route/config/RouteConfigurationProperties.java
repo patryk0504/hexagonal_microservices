@@ -1,4 +1,4 @@
-package com.route;
+package com.route.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
