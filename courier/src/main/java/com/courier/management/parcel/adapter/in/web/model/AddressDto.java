@@ -1,4 +1,4 @@
-package com.route.adapter.in.web.model.model;
+package com.courier.management.parcel.adapter.in.web.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +11,6 @@ public class AddressDto {
     private String state;
     private String postalCode;
     private String country;
-    private String simpleAddress;
     private GeoAddressDto geoAddress;
 
     @Data
@@ -20,4 +19,5 @@ public class AddressDto {
         double latitude;
         double longitude;
     }
+
 }

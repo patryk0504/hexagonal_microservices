@@ -38,8 +38,8 @@ public class DistanceCalculator implements GoogleApi {
             return getDirectionSum(distanceViaGeo.get());
         } else {
             Optional<DirectionsResult> distanceViaNatural = calculateTotalDistanceViaNaturalAddress(
-                    source.getAddress(),
-                    destination.getAddress());
+                    source.getFormattedAddress(),
+                    destination.getFormattedAddress());
             DirectionsResult distanceViaNaturalResult = distanceViaNatural.orElseThrow(() -> new NotFoundException(
                     String.format("Cannot find distance between given address: %s - %s", source, destination)));
 

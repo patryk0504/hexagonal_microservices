@@ -54,7 +54,16 @@ class DeliveryEntity {
     private List<RouteEntity> routes = new ArrayList<>();
 
     enum DeliveryStatus {
-        IN_PROGRESS, COMPLETED
+        IN_PROGRESS, COMPLETED;
+
+        public static DeliveryStatus fromString(String text) {
+            for (DeliveryStatus b : DeliveryStatus.values()) {
+                if (b.name().equalsIgnoreCase(text)) {
+                    return b;
+                }
+            }
+            return null;
+        }
     }
 
     public void addRoute(RouteEntity route) {

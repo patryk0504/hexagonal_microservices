@@ -30,7 +30,6 @@ class CourierEntity {
     private String name;
     private String email;
     private String phone;
-    private String currentLocation;
     private String vehicle;
 
     @OneToMany(

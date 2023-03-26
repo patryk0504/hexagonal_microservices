@@ -1,6 +1,6 @@
 package com.route.adapter.in.web.model.request;
 
-import com.route.adapter.in.web.model.model.GeoAddressDto;
+import com.route.adapter.in.web.model.model.AddressDto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 public class GeoStartAndEndPoints {
     @NotBlank(message = "Start point cannot be null")
-    GeoAddressDto startPoint;
+    AddressDto startPoint;
     @NotBlank(message = "End point cannot be null")
-    GeoAddressDto endPoint;
+    AddressDto endPoint;
 }

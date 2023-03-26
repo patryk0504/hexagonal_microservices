@@ -7,7 +7,7 @@ import com.route.adapter.in.web.model.request.GeoStartAndEndPoints;
 import com.route.application.port.in.GenerateRouteForCourierUseCase;
 import com.route.application.port.in.GenerateRouteUseCase;
 import com.route.application.port.out.GetParcelsForCourierUseCase;
-import com.route.application.service.tsp.TspSimulatedAnnealingAlgorithm;
+import com.route.application.service.tsp.TspAlgorithm;
 import com.route.domain.TspRouteDomain;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ public class RouteManagementService implements GenerateRouteUseCase, GenerateRou
     private final GetParcelsForCourierUseCase getParcelsForCourierUseCase;
     private final DomainMapper domainMapper;
     private final DtoMapper dtoMapper;
-    private final TspSimulatedAnnealingAlgorithm tspAlgorithm;
+    private final TspAlgorithm tspAlgorithm;
 
     @Override
     public AddressRouteDto generateRoute(AddressRouteDto addressRouteDto) {

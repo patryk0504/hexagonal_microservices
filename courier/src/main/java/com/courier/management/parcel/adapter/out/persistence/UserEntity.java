@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
@@ -29,21 +30,48 @@ class UserEntity {
     String password;
 
     @OneToMany(
-            mappedBy = "sender",
+            mappedBy = "user",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private Set<ParcelEntity> parcels = new HashSet<>();
+    private Set<UserParcelEntity> parcels = new HashSet<>();
 
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<AddressEntity> address = new HashSet<>();
 
     public void addParcel(ParcelEntity parcel) {
-        parcels.add(parcel);
-        parcel.setSender(this);
+        UserParcelEntity userParcelEntity = new UserParcelEntity(this, parcel);
+        parcels.add(userParcelEntity);
+        parcel.getUsers().add(userParcelEntity);
     }
 
     public void removeParcel(ParcelEntity parcel) {
-        parcels.remove(parcel);
-        parcel.setSender(null);
+        for (Iterator<UserParcelEntity> iterator = parcels.iterator();
+             iterator.hasNext(); ) {
+            UserParcelEntity userParcel = iterator.next();
+
+            if (userParcel.getUser().equals(this) &&
+                    userParcel.getParcel().equals(parcel)) {
+                iterator.remove();
+                userParcel.getUser().getParcels().remove(userParcel);
+                userParcel.setUser(null);
+                userParcel.setParcel(null);
+            }
+        }
+    }
+
+    public void addAddress(AddressEntity address) {
+        this.address.add(address);
+        address.setUser(this);
+    }
+
+    public void removeAddress(AddressEntity address) {
+        this.address.remove(address);
+        address.setUser(null);
     }
 
     @Override

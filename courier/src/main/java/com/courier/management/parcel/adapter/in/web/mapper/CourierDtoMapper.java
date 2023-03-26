@@ -11,7 +11,6 @@ import org.springframework.data.domain.Page;
 public interface CourierDtoMapper {
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "currentLocation", ignore = true)
     @Mapping(target = "deliveries", ignore = true)
     @Mapping(target = "parcels", ignore = true)
     @Mapping(target = "status", ignore = true)

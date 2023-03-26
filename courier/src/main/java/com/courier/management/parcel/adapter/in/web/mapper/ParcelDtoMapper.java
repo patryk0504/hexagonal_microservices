@@ -11,11 +11,8 @@ import java.util.Set;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR, componentModel = "spring")
 public interface ParcelDtoMapper {
-    //TODO: we must pass user to which assign new parcel
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "user", ignore = true)
     ParcelDomain toParcelDomain(ParcelDto parcelDto);
-
 
     ParcelDto toParcelDto(ParcelDomain parcelDomain);
 

@@ -19,5 +19,5 @@ public class DeliveryDomain {
     DeliveryStatusDomain status = DeliveryStatusDomain.IN_PROGRESS;
     String notes;
     @Builder.Default
-    List<RouteDomain> routes = Collections.emptyList();
+    List<Long> routes = Collections.emptyList();
 }

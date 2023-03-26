@@ -13,7 +13,6 @@ public class CourierDomain {
     String name;
     String email;
     String phone;
-    String currentLocation;
     String vehicle;
     @Builder.Default
     Set<DeliveryDomain> deliveries = Collections.emptySet();

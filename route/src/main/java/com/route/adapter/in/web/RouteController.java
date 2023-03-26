@@ -33,8 +33,11 @@ public class RouteController {
     }
 
     //TODO generated route for courier should be saved into route_table via api
+    //should generated route be also saved as new delivery in delivery table?
     @GetMapping(path = "/courier/{courier_id}/{status}")
     AddressRouteDto generateRouteForFilteredPackages(@PathVariable("courier_id") long courierId, @PathVariable(value = "status") String status, @RequestBody GeoStartAndEndPoints geoStartAndEndPoints) {
         return generateRouteForCourierUseCase.generateRouteForFilteredPackages(courierId, geoStartAndEndPoints, status);
     }
+
+    //TODO generate route for delivery in delivery_table and save new route
 }

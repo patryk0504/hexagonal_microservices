@@ -1,4 +1,4 @@
-package com.courier.management.parcel.application.port;
+package com.courier.management.parcel.application.port.service;
 
 import com.courier.management.parcel.adapter.in.web.mapper.CourierDtoMapper;
 import com.courier.management.parcel.adapter.in.web.mapper.ParcelDtoMapper;

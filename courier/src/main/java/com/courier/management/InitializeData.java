@@ -20,7 +20,7 @@ public class InitializeData {
     public void loadData() {
         log.info("Init DATABASE");
         ResourceDatabasePopulator resourceDatabasePopulator = new ResourceDatabasePopulator(false, false, "UTF-8",
-                new ClassPathResource("data2.sql"));
+                new ClassPathResource("data3.sql"));
         resourceDatabasePopulator.execute(dataSource);
     }
 }
