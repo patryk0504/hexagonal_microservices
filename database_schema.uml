@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.address_table</OriginalElement>
+  <nodes>
+    <node x="-89.74999999999997" y="603.0">36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.route_table</node>
+    <node x="325.75" y="320.0">36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.address_table</node>
+    <node x="-50.99999999999997" y="-116.0">36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.courier_table</node>
+    <node x="181.74642857142862" y="636.0">36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.parcel_address_table</node>
+    <node x="278.61785714285713" y="123.0">36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.user_table</node>
+    <node x="-33.49999999999997" y="342.0">36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.delivery_table</node>
+    <node x="58.75000000000003" y="101.0">36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.parcel_table</node>
+    <node x="150.75" y="386.0">36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.user_parcel_table</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.delivery_table" target="36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.courier_table" relationship="REFERENCES">
+      <point x="-37.5" y="-93.5" />
+      <point x="4.000000000000028" y="293.0" />
+      <point x="24.628571428571433" y="293.0" />
+      <point x="24.628571428571433" y="75.0" />
+      <point x="19.50000000000003" y="75.0" />
+      <point x="0.0" y="82.5" />
+    </edge>
+    <edge source="36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.route_table" target="36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.delivery_table" relationship="REFERENCES">
+      <point x="44.25" y="-82.5" />
+      <point x="43.00000000000003" y="577.0" />
+      <point x="41.50000000000003" y="577.0" />
+      <point x="0.0" y="93.5" />
+    </edge>
+    <edge source="36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.parcel_table" target="36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.courier_table" relationship="REFERENCES">
+      <point x="0.0" y="-82.5" />
+      <point x="140.25" y="75.0" />
+      <point x="19.50000000000003" y="75.0" />
+      <point x="0.0" y="82.5" />
+    </edge>
+    <edge source="36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.parcel_address_table" target="36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.parcel_table" relationship="REFERENCES">
+      <point x="-44.75" y="-49.5" />
+      <point x="226.49642857142862" y="577.0" />
+      <point x="140.25" y="577.0" />
+      <point x="0.0" y="82.5" />
+    </edge>
+    <edge source="36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.user_parcel_table" target="36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.user_table" relationship="REFERENCES">
+      <point x="38.75" y="-49.5" />
+      <point x="267.0" y="293.0" />
+      <point x="355.11785714285713" y="293.0" />
+      <point x="0.0" y="60.5" />
+    </edge>
+    <edge source="36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.user_parcel_table" target="36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.parcel_table" relationship="REFERENCES">
+      <point x="-38.75" y="-49.5" />
+      <point x="189.5" y="293.0" />
+      <point x="140.25" y="293.0" />
+      <point x="0.0" y="82.5" />
+    </edge>
+    <edge source="36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.address_table" target="36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.user_table" relationship="REFERENCES">
+      <point x="0.0" y="-115.5" />
+      <point x="414.25" y="293.0" />
+      <point x="355.11785714285713" y="293.0" />
+      <point x="0.0" y="60.5" />
+    </edge>
+    <edge source="36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.parcel_address_table" target="36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.address_table" relationship="REFERENCES">
+      <point x="44.75" y="-49.5" />
+      <point x="315.9964285714286" y="577.0" />
+      <point x="414.25" y="577.0" />
+      <point x="0.0" y="115.5" />
+    </edge>
+    <edge source="36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.route_table" target="36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.courier_table" relationship="REFERENCES">
+      <point x="-44.25" y="-82.5" />
+      <point x="-45.49999999999997" y="577.0" />
+      <point x="-44.0" y="577.0" />
+      <point x="-44.0" y="75.0" />
+      <point x="19.50000000000003" y="75.0" />
+      <point x="0.0" y="82.5" />
+    </edge>
+    <edge source="36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.delivery_table" target="36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.parcel_table" relationship="REFERENCES">
+      <point x="37.5" y="-93.5" />
+      <point x="79.00000000000003" y="293.0" />
+      <point x="140.25" y="293.0" />
+      <point x="0.0" y="82.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.5940265486725663" showDependencies="false" x="193.5" y="495.18435754189954" />
+  <SelectedNodes>
+    <node>36616e51-e109-4f15-a42b-747427a0de5b.TABLE:postgres.public.address_table</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Comments</Category>
+    <Category>Key columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+
