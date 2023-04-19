@@ -12,4 +12,6 @@ public interface ParcelManagementReadPort {
     Set<ParcelDomain> getParcelsForCourier(long courierId);
 
     Set<ParcelDomain> getParcelsForCourierByStatus(long courierId, ParcelStatusDomain parcelStatusDomain);
+
+    Set<ParcelDomain> getUnsignedParcels();
 }

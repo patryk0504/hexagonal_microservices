@@ -46,4 +46,13 @@ public class ParcelManagementReadAdapter implements ParcelManagementReadPort {
         }
         return parcelDomainMapper.toParcelDomainSet(parcels);
     }
+
+    @Override
+    public Set<ParcelDomain> getUnsignedParcels() {
+        Set<ParcelEntity> parcels = parcelRepository.findAllByCourierIsNull();
+        if (parcels == null) {
+            return Set.of();
+        }
+        return parcelDomainMapper.toParcelDomainSet(parcels);
+    }
 }

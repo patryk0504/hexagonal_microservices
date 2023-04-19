@@ -43,8 +43,8 @@ class UserEntity {
     )
     private Set<AddressEntity> address = new HashSet<>();
 
-    public void addParcel(ParcelEntity parcel) {
-        UserParcelEntity userParcelEntity = new UserParcelEntity(this, parcel);
+    public void addParcel(ParcelEntity parcel, RoleEnum role) {
+        UserParcelEntity userParcelEntity = new UserParcelEntity(this, parcel, role);
         parcels.add(userParcelEntity);
         parcel.getUsers().add(userParcelEntity);
     }

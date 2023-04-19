@@ -9,12 +9,14 @@ import com.courier.management.parcel.application.port.out.DeliveryManagementWrit
 import com.courier.management.parcel.domain.DeliveryDomain;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class DeliveryManagementService implements CreateDeliveryUseCase, GetDeliveriesUseCase {
     private final DeliveryManagementReadPort readPort;
     private final DeliveryManagementWritePort writePort;
@@ -27,6 +29,7 @@ public class DeliveryManagementService implements CreateDeliveryUseCase, GetDeli
     }
 
     //TODO: reimplement this
+    @Transactional(readOnly = true)
     @Override
     public DeliveryDto getCourierDeliveries(long courierId) {
         Set<DeliveryDomain> deliveryDomainSet = readPort.getCourierDeliveries(courierId);

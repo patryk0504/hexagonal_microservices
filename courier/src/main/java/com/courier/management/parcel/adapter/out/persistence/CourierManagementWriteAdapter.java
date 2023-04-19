@@ -5,6 +5,9 @@ import com.courier.management.parcel.domain.CourierDomain;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Set;
+
 @RequiredArgsConstructor
 @Service
 public class CourierManagementWriteAdapter implements CourierManagementWritePort {
@@ -20,11 +23,11 @@ public class CourierManagementWriteAdapter implements CourierManagementWritePort
     }
 
     @Override
-    public void assignParcel(long courierId, long parcelId) {
+    public void assignParcel(long courierId, List<Long> parcelIds) {
         CourierEntity courierEntity = courierRepository.findById(courierId).orElseThrow();
-        ParcelEntity parcelEntity = parcelRepository.findById(parcelId).orElseThrow();
+        Set<ParcelEntity> parcelEntities = parcelRepository.findAllByIdIn(parcelIds);
 
-        courierEntity.addParcel(parcelEntity);
+        parcelEntities.forEach(courierEntity::addParcel);
         courierRepository.save(courierEntity);
     }
 }

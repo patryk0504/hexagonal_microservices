@@ -38,10 +38,11 @@ public class UserParcelEntity {
     @Enumerated(EnumType.STRING)
     private RoleEnum role;
 
-    public UserParcelEntity(UserEntity user, ParcelEntity parcel) {
+    public UserParcelEntity(UserEntity user, ParcelEntity parcel, RoleEnum role) {
         this.user = user;
         this.parcel = parcel;
         this.id = new UserParcelId(user.getId(), parcel.getId());
+        this.role = role;
     }
 
     @Override

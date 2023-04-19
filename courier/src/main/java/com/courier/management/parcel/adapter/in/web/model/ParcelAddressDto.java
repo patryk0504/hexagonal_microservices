@@ -6,6 +6,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class ParcelAddressDto {
-    AddressDto address;
-    String role;
+    private AddressDto address;
+    private String role;
 }

@@ -7,5 +7,5 @@ import lombok.Value;
 @Builder
 public class UserParcelDomain {
     Long user;
-    String role;
+    RoleEnumDomain role;
 }

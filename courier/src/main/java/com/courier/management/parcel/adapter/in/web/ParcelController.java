@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Set;
+
 @RestController
 @RequiredArgsConstructor
 @Validated
-@RequestMapping("api/v1/parcel")
+@RequestMapping("api/v1/parcels")
 class ParcelController {
     private final CreateParcelUseCase createParcelUseCase;
     private final GetParcelsUseCase getParcelsUseCase;
@@ -32,5 +34,10 @@ class ParcelController {
                                @RequestParam(defaultValue = "0") int page,
                                @RequestParam(defaultValue = "10") int pageSize) {
         return getParcelsUseCase.getParcels(sortOrder, sortBy, page, pageSize);
+    }
+
+    @GetMapping(path = "/unsigned")
+    Set<ParcelDto> getParcelsUnsigned() {
+        return getParcelsUseCase.getUnsignedParcels();
     }
 }

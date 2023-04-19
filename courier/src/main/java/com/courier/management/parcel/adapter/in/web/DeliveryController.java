@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @Validated
-@RequestMapping("api/v1/delivery")
+@RequestMapping("api/v1/deliveries")
 public class DeliveryController {
     private final CreateDeliveryUseCase createDeliveryUseCase;
     private final GetDeliveriesUseCase getDeliveriesUseCase;

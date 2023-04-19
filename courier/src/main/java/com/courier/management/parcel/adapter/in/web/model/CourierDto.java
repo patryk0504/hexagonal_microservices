@@ -8,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 @NoArgsConstructor
 public class CourierDto {
+    private Long id;
     @NotBlank(message = "Name cannot be null")
     private String name;
     @NotBlank(message = "Email cannot be null")

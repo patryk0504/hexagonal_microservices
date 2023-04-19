@@ -20,11 +20,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class CourierManagementService implements CreateCourierUseCase, GetParcelForCourierUseCase, AssignParcelUseCase, GetCouriersUseCase {
 
     private final CourierManagementReadPort readPort;
@@ -34,7 +36,6 @@ public class CourierManagementService implements CreateCourierUseCase, GetParcel
     private final ParcelDtoMapper parcelDtoMapper;
 
 
-    @Transactional
     @Override
     public void createCourier(CourierDto courierDto) {
         writePort.createCourier(courierDtoMapper.toCourierDomain(courierDto));
@@ -47,6 +48,7 @@ public class CourierManagementService implements CreateCourierUseCase, GetParcel
         return parcelDtoMapper.toParcelDtoSet(parcelDomains);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Set<ParcelDto> getParcelsForCourierByStatus(long courierId, String status) {
         Optional<ParcelStatusDomain> parcelStatusDomain = Optional.ofNullable(ParcelStatusDomain.fromString(status));
@@ -60,12 +62,12 @@ public class CourierManagementService implements CreateCourierUseCase, GetParcel
         return Collections.emptySet();
     }
 
-    @Transactional
     @Override
-    public void assignParcelToCourier(long courierId, long parcelId) {
-        writePort.assignParcel(courierId, parcelId);
+    public void assignParcelToCourier(long courierId, List<Long> parcelIds) {
+        writePort.assignParcel(courierId, parcelIds);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Page<CourierDto> getCouriers(String sortOrder, String sortBy, int page, int pageSize) {
         Page<CourierDomain> courierDomains = readPort.getCouriers(sortOrder, sortBy, page, pageSize);

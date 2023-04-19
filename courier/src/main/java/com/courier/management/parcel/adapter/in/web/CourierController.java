@@ -1,6 +1,7 @@
 package com.courier.management.parcel.adapter.in.web;
 
 
+import com.courier.management.parcel.adapter.in.web.model.AssignParcelDto;
 import com.courier.management.parcel.adapter.in.web.model.CourierDto;
 import com.courier.management.parcel.adapter.in.web.model.ParcelDto;
 import com.courier.management.parcel.application.port.in.AssignParcelUseCase;
@@ -27,7 +28,7 @@ import java.util.Set;
 @RestController
 @RequiredArgsConstructor
 @Validated
-@RequestMapping("api/v1/courier")
+@RequestMapping("api/v1/couriers")
 public class CourierController {
 
     private final CreateCourierUseCase createCourierUseCase;
@@ -66,9 +67,9 @@ public class CourierController {
         return getCouriersUseCase.getCouriers(sortOrder, sortBy, page, pageSize);
     }
 
-    @PutMapping(path = "/{courier_id}/parcel/{parcel_id}")
-    ResponseEntity<Void> assignParcel(@PathVariable("courier_id") long courierId, @PathVariable("parcel_id") long parcelId) {
-        assignParcelUseCase.assignParcelToCourier(courierId, parcelId);
+    @PutMapping(path = "/{courier_id}/parcel")
+    ResponseEntity<Void> assignParcel(@PathVariable("courier_id") long courierId, @RequestBody AssignParcelDto assignParcelDto) {
+        assignParcelUseCase.assignParcelToCourier(courierId, assignParcelDto.getSelectedParcelIds());
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

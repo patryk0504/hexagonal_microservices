@@ -19,5 +19,7 @@ interface ParcelRepository extends JpaRepository<ParcelEntity, Long> {
     Set<ParcelEntity> findAllByCourierIdAndStatus(@Param("id") long id, @Param("status") ParcelEntity.ParcelStatus status);
 
     Set<ParcelEntity> findAllByCourierId(long id);
+
+    Set<ParcelEntity> findAllByCourierIsNull();
 }
 

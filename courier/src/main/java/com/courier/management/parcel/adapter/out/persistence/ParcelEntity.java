@@ -67,8 +67,8 @@ class ParcelEntity {
         CREATED, IN_TRANSIT, DELIVERED, RETURNED
     }
 
-    public void addAddress(AddressEntity address) {
-        ParcelAddressEntity userParcelEntity = new ParcelAddressEntity(this, address);
+    public void addAddress(AddressEntity address, RoleEnum role) {
+        ParcelAddressEntity userParcelEntity = new ParcelAddressEntity(this, address, role);
         this.address.add(userParcelEntity);
         address.getParcel().add(userParcelEntity);
     }

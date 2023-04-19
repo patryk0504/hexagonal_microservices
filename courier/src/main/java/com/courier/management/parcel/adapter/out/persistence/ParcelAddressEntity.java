@@ -37,10 +37,11 @@ public class ParcelAddressEntity {
     @Enumerated(EnumType.STRING)
     private RoleEnum role;
 
-    public ParcelAddressEntity(ParcelEntity parcel, AddressEntity address) {
+    public ParcelAddressEntity(ParcelEntity parcel, AddressEntity address, RoleEnum role) {
         this.parcel = parcel;
         this.address = address;
         this.id = new ParcelAddressId(parcel.getId(), address.getId());
+        this.role = role;
     }
 
     @Override

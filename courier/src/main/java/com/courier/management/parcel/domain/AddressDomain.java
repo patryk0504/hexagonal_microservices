@@ -6,6 +6,7 @@ import lombok.Value;
 @Builder
 @Value
 public class AddressDomain {
+    Long id;
     String street;
     String city;
     String state;

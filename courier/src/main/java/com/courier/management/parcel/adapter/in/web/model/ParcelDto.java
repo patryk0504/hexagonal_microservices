@@ -9,7 +9,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 public class ParcelDto {
-    Long id;
+    private Long id;
     @NotBlank(message = "Name cannot be null")
     private String name;
     @NotBlank(message = "Weight cannot be null")

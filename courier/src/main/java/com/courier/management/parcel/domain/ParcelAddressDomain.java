@@ -7,5 +7,5 @@ import lombok.Value;
 @Builder
 public class ParcelAddressDomain {
     AddressDomain address;
-    String role;
+    RoleEnumDomain role;
 }
