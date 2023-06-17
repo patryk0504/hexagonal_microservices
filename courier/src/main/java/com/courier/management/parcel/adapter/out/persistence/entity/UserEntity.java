@@ -1,4 +1,4 @@
-package com.courier.management.parcel.adapter.out.persistence;
+package com.courier.management.parcel.adapter.out.persistence.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +20,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "user_table")
-class UserEntity {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;

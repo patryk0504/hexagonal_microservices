@@ -1,4 +1,4 @@
-package com.courier.management.parcel.adapter.out.persistence;
+package com.courier.management.parcel.adapter.out.persistence.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,25 +16,26 @@ import java.util.Objects;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ParcelAddressId implements Serializable {
+public class UserParcelId
+        implements Serializable {
+
+    @Column(name = "user_id")
+    private Long userId;
 
     @Column(name = "parcel_id")
     private Long parcelId;
-
-    @Column(name = "address_id")
-    private Long addressId;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        ParcelAddressId that = (ParcelAddressId) o;
-        return parcelId != null && Objects.equals(parcelId, that.parcelId)
-                && addressId != null && Objects.equals(addressId, that.addressId);
+        UserParcelId that = (UserParcelId) o;
+        return userId != null && Objects.equals(userId, that.userId)
+                && parcelId != null && Objects.equals(parcelId, that.parcelId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(parcelId, addressId);
+        return Objects.hash(userId, parcelId);
     }
 }

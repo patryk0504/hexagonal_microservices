@@ -1,5 +1,6 @@
-package com.courier.management.parcel.adapter.out.persistence;
+package com.courier.management.parcel.adapter.out.persistence.mapper;
 
+import com.courier.management.parcel.adapter.out.persistence.entity.RouteEntity;
 import com.courier.management.parcel.domain.RouteDomain;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

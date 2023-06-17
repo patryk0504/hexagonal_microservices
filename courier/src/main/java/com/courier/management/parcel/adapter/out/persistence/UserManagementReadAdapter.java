@@ -1,5 +1,9 @@
 package com.courier.management.parcel.adapter.out.persistence;
 
+import com.courier.management.parcel.adapter.out.persistence.entity.AddressEntity;
+import com.courier.management.parcel.adapter.out.persistence.entity.UserEntity;
+import com.courier.management.parcel.adapter.out.persistence.mapper.AddressDomainMapper;
+import com.courier.management.parcel.adapter.out.persistence.mapper.UserDomainMapper;
 import com.courier.management.parcel.application.port.out.UserManagementReadPort;
 import com.courier.management.parcel.domain.AddressDomain;
 import com.courier.management.parcel.domain.UserDomain;

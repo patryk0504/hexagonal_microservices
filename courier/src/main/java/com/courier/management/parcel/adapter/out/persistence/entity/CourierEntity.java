@@ -1,4 +1,4 @@
-package com.courier.management.parcel.adapter.out.persistence;
+package com.courier.management.parcel.adapter.out.persistence.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +21,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "courier_table")
-class CourierEntity {
+public class CourierEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -77,7 +77,7 @@ class CourierEntity {
         parcel.setCourier(null);
     }
 
-    enum CourierStatus {
+    public enum CourierStatus {
         AVAILABLE, ON_DELIVERY, OFF_DUTY
     }
 

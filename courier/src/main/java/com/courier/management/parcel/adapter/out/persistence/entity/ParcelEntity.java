@@ -1,4 +1,4 @@
-package com.courier.management.parcel.adapter.out.persistence;
+package com.courier.management.parcel.adapter.out.persistence.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -31,7 +31,7 @@ import java.util.Set;
 @Cache(
         usage = CacheConcurrencyStrategy.READ_WRITE
 )
-class ParcelEntity {
+public class ParcelEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -63,7 +63,7 @@ class ParcelEntity {
     )
     private Set<ParcelAddressEntity> address = new HashSet<>();
 
-    enum ParcelStatus {
+    public enum ParcelStatus {
         CREATED, IN_TRANSIT, DELIVERED, RETURNED
     }
 

@@ -1,5 +1,6 @@
 package com.courier.management.parcel.adapter.out.persistence;
 
+import com.courier.management.parcel.adapter.out.persistence.mapper.CourierDomainMapper;
 import com.courier.management.parcel.application.port.out.CourierManagementReadPort;
 import com.courier.management.parcel.domain.CourierDomain;
 import lombok.RequiredArgsConstructor;

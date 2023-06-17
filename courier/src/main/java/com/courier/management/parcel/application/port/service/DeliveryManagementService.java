@@ -1,7 +1,7 @@
 package com.courier.management.parcel.application.port.service;
 
 import com.courier.management.parcel.adapter.in.web.model.DeliveryDto;
-import com.courier.management.parcel.adapter.out.persistence.DeliveryDomainMapper;
+import com.courier.management.parcel.adapter.out.persistence.mapper.DeliveryDomainMapper;
 import com.courier.management.parcel.application.port.in.CreateDeliveryUseCase;
 import com.courier.management.parcel.application.port.in.GetDeliveriesUseCase;
 import com.courier.management.parcel.application.port.out.DeliveryManagementReadPort;

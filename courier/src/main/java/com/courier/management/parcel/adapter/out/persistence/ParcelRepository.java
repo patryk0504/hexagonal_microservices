@@ -1,5 +1,6 @@
 package com.courier.management.parcel.adapter.out.persistence;
 
+import com.courier.management.parcel.adapter.out.persistence.entity.ParcelEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

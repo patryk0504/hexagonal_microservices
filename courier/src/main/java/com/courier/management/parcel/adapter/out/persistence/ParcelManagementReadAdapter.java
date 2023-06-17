@@ -1,5 +1,7 @@
 package com.courier.management.parcel.adapter.out.persistence;
 
+import com.courier.management.parcel.adapter.out.persistence.entity.ParcelEntity;
+import com.courier.management.parcel.adapter.out.persistence.mapper.ParcelDomainMapper;
 import com.courier.management.parcel.application.port.out.ParcelManagementReadPort;
 import com.courier.management.parcel.domain.ParcelDomain;
 import com.courier.management.parcel.domain.ParcelStatusDomain;

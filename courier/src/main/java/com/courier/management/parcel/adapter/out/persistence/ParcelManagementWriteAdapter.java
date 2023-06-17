@@ -1,5 +1,12 @@
 package com.courier.management.parcel.adapter.out.persistence;
 
+import com.courier.management.parcel.adapter.out.persistence.entity.AddressEntity;
+import com.courier.management.parcel.adapter.out.persistence.entity.ParcelEntity;
+import com.courier.management.parcel.adapter.out.persistence.entity.RoleEnum;
+import com.courier.management.parcel.adapter.out.persistence.entity.UserEntity;
+import com.courier.management.parcel.adapter.out.persistence.mapper.AddressDomainMapper;
+import com.courier.management.parcel.adapter.out.persistence.mapper.ParcelDomainMapper;
+import com.courier.management.parcel.adapter.out.persistence.mapper.UserDomainMapper;
 import com.courier.management.parcel.application.port.out.ParcelManagementWritePort;
 import com.courier.management.parcel.domain.ParcelAddressDomain;
 import com.courier.management.parcel.domain.ParcelDomain;

@@ -1,6 +1,8 @@
-package com.courier.management.parcel.adapter.out.persistence;
+package com.courier.management.parcel.adapter.out.persistence.mapper;
 
 import com.courier.management.parcel.adapter.in.web.model.DeliveryDto;
+import com.courier.management.parcel.adapter.out.persistence.entity.DeliveryEntity;
+import com.courier.management.parcel.adapter.out.persistence.entity.RouteEntity;
 import com.courier.management.parcel.domain.DeliveryCreateDomain;
 import com.courier.management.parcel.domain.DeliveryDomain;
 import org.mapstruct.Mapper;

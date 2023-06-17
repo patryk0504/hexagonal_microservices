@@ -1,4 +1,4 @@
-package com.courier.management.parcel.adapter.out.persistence;
+package com.courier.management.parcel.adapter.out.persistence.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -25,7 +25,7 @@ import java.util.Objects;
 @Setter
 @Entity
 @Table(name = "delivery_table")
-class DeliveryEntity {
+public class DeliveryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -53,7 +53,7 @@ class DeliveryEntity {
     )
     private List<RouteEntity> routes = new ArrayList<>();
 
-    enum DeliveryStatus {
+    public enum DeliveryStatus {
         IN_PROGRESS, COMPLETED;
 
         public static DeliveryStatus fromString(String text) {

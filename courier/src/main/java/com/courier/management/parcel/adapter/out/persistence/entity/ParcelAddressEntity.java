@@ -1,4 +1,4 @@
-package com.courier.management.parcel.adapter.out.persistence;
+package com.courier.management.parcel.adapter.out.persistence.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,32 +16,31 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 import java.util.Objects;
 
-
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "user_parcel_table")
-public class UserParcelEntity {
+@Table(name = "parcel_address_table")
+public class ParcelAddressEntity {
     @EmbeddedId
-    private UserParcelId id;
+    private ParcelAddressId id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("parcelId")
     private ParcelEntity parcel;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("userId")
-    private UserEntity user;
+    @MapsId("addressId")
+    private AddressEntity address;
 
     @Enumerated(EnumType.STRING)
     private RoleEnum role;
 
-    public UserParcelEntity(UserEntity user, ParcelEntity parcel, RoleEnum role) {
-        this.user = user;
+    public ParcelAddressEntity(ParcelEntity parcel, AddressEntity address, RoleEnum role) {
         this.parcel = parcel;
-        this.id = new UserParcelId(user.getId(), parcel.getId());
+        this.address = address;
+        this.id = new ParcelAddressId(parcel.getId(), address.getId());
         this.role = role;
     }
 
@@ -49,7 +48,7 @@ public class UserParcelEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        UserParcelEntity that = (UserParcelEntity) o;
+        ParcelAddressEntity that = (ParcelAddressEntity) o;
         return id != null && Objects.equals(id, that.id);
     }
 
