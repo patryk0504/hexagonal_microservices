@@ -7,7 +7,7 @@ import com.courier.management.parcel.domain.DeliveryDomain;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -16,8 +16,8 @@ public class DeliveryManagementReadAdapter implements DeliveryManagementReadPort
     private final DeliveryDomainMapper deliveryDomainMapper;
 
     @Override
-    public Set<DeliveryDomain> getCourierDeliveries(long courierId) {
-        Set<DeliveryEntity> deliveryEntities = deliveryRepository.findAllByCourierId(courierId);
-        return deliveryDomainMapper.toDeliveryDomainSet(deliveryEntities);
+    public Optional<DeliveryDomain> getCourierDeliveries(long courierId) {
+        Optional<DeliveryEntity> deliveryEntity = deliveryRepository.findFirstByCourierIdOrderByCreatedOnAsc(courierId);
+        return deliveryEntity.map(deliveryDomainMapper::toDeliveryDomain);
     }
 }

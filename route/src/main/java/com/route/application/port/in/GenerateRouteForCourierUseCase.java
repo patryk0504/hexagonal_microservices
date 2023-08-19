@@ -1,11 +1,13 @@
 package com.route.application.port.in;
 
-import com.route.adapter.in.web.model.model.AddressRouteDto;
 import com.route.adapter.in.web.model.request.GeoStartAndEndPoints;
+import com.route.domain.TspRouteDomain;
+import reactor.core.publisher.Mono;
 
 public interface GenerateRouteForCourierUseCase {
-    AddressRouteDto generateRoute(long courierId, GeoStartAndEndPoints geoStartAndEndPoints);
+    TspRouteDomain generateRoute(long courierId, GeoStartAndEndPoints geoStartAndEndPoints);
 
-    AddressRouteDto generateRouteForFilteredPackages(long courierId, GeoStartAndEndPoints geoStartAndEndPoints, String status);
+    Mono<String> generateRouteForFilteredPackages(long courierId, GeoStartAndEndPoints geoStartAndEndPoints,
+                                                  String status);
 
 }

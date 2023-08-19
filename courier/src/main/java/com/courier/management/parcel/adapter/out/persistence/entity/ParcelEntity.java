@@ -48,6 +48,10 @@ public class ParcelEntity {
     @JoinColumn(name = "courier_id")
     private CourierEntity courier;
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "delivery_id")
+    private DeliveryEntity delivery;
+
 
     @OneToMany(
             mappedBy = "parcel",
@@ -62,6 +66,9 @@ public class ParcelEntity {
             orphanRemoval = true
     )
     private Set<ParcelAddressEntity> address = new HashSet<>();
+
+
+    private int deliveryOrder = 0;
 
     public enum ParcelStatus {
         CREATED, IN_TRANSIT, DELIVERED, RETURNED

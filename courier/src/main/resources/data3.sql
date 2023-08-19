@@ -1,7 +1,6 @@
 TRUNCATE TABLE courier_table CASCADE;
 TRUNCATE TABLE delivery_table CASCADE;
 TRUNCATE TABLE parcel_table CASCADE;
-TRUNCATE TABLE route_table CASCADE;
 TRUNCATE TABLE user_table CASCADE;
 TRUNCATE TABLE address_table CASCADE;
 
@@ -10,20 +9,16 @@ INSERT INTO courier_table (email, name, phone, status, vehicle)
 VALUES ('john@example.com', 'John Doe', '+48 123 456 789', 'AVAILABLE', 'bike'),
        ('jane@example.com', 'Jane Smith', '+48 987 654 321', 'ON_DELIVERY', 'car');
 
--- Inserting data into parcel_table
-INSERT INTO parcel_table (dimensions, name, status, weight, courier_id)
-VALUES ('20x10x5', 'Small package', 'CREATED', 1.5, 1),
-       ('50x50x50', 'Large package', 'CREATED', 10, 2);
-
 -- Inserting data into delivery_table
-INSERT INTO delivery_table (end_time, notes, start_time, status, courier_id, parcel_id)
+INSERT INTO delivery_table (end_time, notes, start_time, status, courier_id, delivery_order)
 VALUES ('2023-03-30 13:00:00', 'Delivered to the front desk', '2023-03-30 12:15:00', 'IN_PROGRESS', 1, 1),
        (NULL, 'Attempted delivery, recipient not home', '2023-03-31 16:00:00', 'IN_PROGRESS', 2, 2);
 
--- Inserting data into route_table
-INSERT INTO route_table (latitude, longitude, route_order, courier_id, delivery_id)
-VALUES (50.0646501, 19.9449799, 1, 1, 1),
-       (50.0502525, 19.9443941, 1, 2, 2);
+
+-- Inserting data into parcel_table
+INSERT INTO parcel_table (dimensions, name, status, weight, courier_id, delivery_id, delivery_order)
+VALUES ('20x10x5', 'Small package', 'CREATED', 1.5, 1, 1, 1),
+       ('50x50x50', 'Large package', 'CREATED', 10, 2, 1, 2);
 
 -- Inserting data into user_table
 INSERT INTO user_table (email, name, password)

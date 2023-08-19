@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -17,4 +19,6 @@ public class CourierDto {
     private String phone;
     @NotBlank(message = "Vehicle cannot be null")
     private String vehicle;
+    @NotNull
+    private Set<CourierAddressDto> shiftAddress;
 }

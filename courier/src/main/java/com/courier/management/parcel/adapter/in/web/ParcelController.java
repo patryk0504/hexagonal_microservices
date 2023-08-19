@@ -23,12 +23,12 @@ class ParcelController {
     private final CreateParcelUseCase createParcelUseCase;
     private final GetParcelsUseCase getParcelsUseCase;
 
-    @PostMapping(path = "")
+    @PostMapping
     void createParcel(@RequestBody ParcelDto parcelDto) {
         createParcelUseCase.createParcel(parcelDto);
     }
 
-    @GetMapping(path = "")
+    @GetMapping
     Page<ParcelDto> getParcels(@RequestParam(required = false) String sortOrder,
                                @RequestParam(defaultValue = "name") String sortBy,
                                @RequestParam(defaultValue = "0") int page,

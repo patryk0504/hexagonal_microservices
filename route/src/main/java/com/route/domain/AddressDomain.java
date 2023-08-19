@@ -1,16 +1,13 @@
 package com.route.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 
-@Getter
-@Setter
-@AllArgsConstructor
+@Data
 @Builder
 public class AddressDomain {
+    private Long parcelId;
     private double latitude;
     private double longitude;
     private String street;

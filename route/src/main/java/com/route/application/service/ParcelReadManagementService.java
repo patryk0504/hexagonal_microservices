@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 @Slf4j
-public class ParcelManagementService implements GetParcelsForCourierUseCase {
+public class ParcelReadManagementService implements GetParcelsForCourierUseCase {
 
     private static final String FILTERED_PARCELS_FOR_COURIER_URI = "/couriers/%s/parcels/%s";
     private static final String PARCELS_FOR_COURIER_URI = "/couriers/%s/parcels";

@@ -1,4 +1,4 @@
-package com.courier.management.parcel.adapter.in.web.model;
+package com.route.adapter.in.web.model.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

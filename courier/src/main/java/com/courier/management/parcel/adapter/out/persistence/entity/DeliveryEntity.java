@@ -3,6 +3,7 @@ package com.courier.management.parcel.adapter.out.persistence.entity;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +32,11 @@ public class DeliveryEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parcel_id")
-    private ParcelEntity parcel;
+    @OneToMany(
+            mappedBy = "delivery",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<ParcelEntity> parcels = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "courier_id")
@@ -45,13 +49,10 @@ public class DeliveryEntity {
     private DeliveryStatus status;
 
     private String notes;
+    private int deliveryOrder;
 
-    @OneToMany(
-            mappedBy = "delivery",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private List<RouteEntity> routes = new ArrayList<>();
+    @CreationTimestamp
+    private Instant createdOn;
 
     public enum DeliveryStatus {
         IN_PROGRESS, COMPLETED;
@@ -66,14 +67,11 @@ public class DeliveryEntity {
         }
     }
 
-    public void addRoute(RouteEntity route) {
-        routes.add(route);
-        route.setDelivery(this);
-    }
-
-    public void removeRoute(RouteEntity route) {
-        routes.remove(route);
-        route.setDelivery(null);
+    public void addParcel(ParcelEntity parcel) {
+        this.getParcels().add(parcel);
+        parcel.setDelivery(this);
+        this.deliveryOrder = this.deliveryOrder + 1;
+//        parcel.setDeliveryOrder(parcel.getDeliveryOrder() + 1);
     }
 
     @Override

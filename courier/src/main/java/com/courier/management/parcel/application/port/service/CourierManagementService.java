@@ -5,8 +5,7 @@ import com.courier.management.parcel.adapter.in.web.mapper.ParcelDtoMapper;
 import com.courier.management.parcel.adapter.in.web.model.CourierDto;
 import com.courier.management.parcel.adapter.in.web.model.ParcelDto;
 import com.courier.management.parcel.application.port.in.AssignParcelUseCase;
-import com.courier.management.parcel.application.port.in.CreateCourierUseCase;
-import com.courier.management.parcel.application.port.in.GetCouriersUseCase;
+import com.courier.management.parcel.application.port.in.CourierCrudOperations;
 import com.courier.management.parcel.application.port.in.GetParcelForCourierUseCase;
 import com.courier.management.parcel.application.port.out.CourierManagementReadPort;
 import com.courier.management.parcel.application.port.out.CourierManagementWritePort;
@@ -27,7 +26,7 @@ import java.util.Set;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class CourierManagementService implements CreateCourierUseCase, GetParcelForCourierUseCase, AssignParcelUseCase, GetCouriersUseCase {
+public class CourierManagementService implements CourierCrudOperations, GetParcelForCourierUseCase, AssignParcelUseCase {
 
     private final CourierManagementReadPort readPort;
     private final CourierManagementWritePort writePort;
@@ -72,5 +71,11 @@ public class CourierManagementService implements CreateCourierUseCase, GetParcel
     public Page<CourierDto> getCouriers(String sortOrder, String sortBy, int page, int pageSize) {
         Page<CourierDomain> courierDomains = readPort.getCouriers(sortOrder, sortBy, page, pageSize);
         return courierDtoMapper.toCourierDtoPage(courierDomains);
+    }
+
+    @Override
+    public CourierDto getCourier(long courierId) {
+        Optional<CourierDomain> courierDomain = readPort.getCourier(courierId);
+        return courierDomain.map(courierDtoMapper::toCourierDto).orElse(null);
     }
 }

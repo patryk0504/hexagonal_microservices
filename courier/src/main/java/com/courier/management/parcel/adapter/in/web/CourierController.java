@@ -5,8 +5,7 @@ import com.courier.management.parcel.adapter.in.web.model.AssignParcelDto;
 import com.courier.management.parcel.adapter.in.web.model.CourierDto;
 import com.courier.management.parcel.adapter.in.web.model.ParcelDto;
 import com.courier.management.parcel.application.port.in.AssignParcelUseCase;
-import com.courier.management.parcel.application.port.in.CreateCourierUseCase;
-import com.courier.management.parcel.application.port.in.GetCouriersUseCase;
+import com.courier.management.parcel.application.port.in.CourierCrudOperations;
 import com.courier.management.parcel.application.port.in.GetParcelForCourierUseCase;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
@@ -31,14 +30,13 @@ import java.util.Set;
 @RequestMapping("api/v1/couriers")
 public class CourierController {
 
-    private final CreateCourierUseCase createCourierUseCase;
+    private final CourierCrudOperations courierCrudOperations;
     private final GetParcelForCourierUseCase getParcels;
     private final AssignParcelUseCase assignParcelUseCase;
-    private final GetCouriersUseCase getCouriersUseCase;
 
     @PostMapping(path = "")
     void createCourier(@RequestBody CourierDto parcelDto) {
-        createCourierUseCase.createCourier(parcelDto);
+        courierCrudOperations.createCourier(parcelDto);
     }
 
     @GetMapping(path = "/{courier_id}/parcels/{status}")
@@ -64,12 +62,17 @@ public class CourierController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int pageSize
     ) {
-        return getCouriersUseCase.getCouriers(sortOrder, sortBy, page, pageSize);
+        return courierCrudOperations.getCouriers(sortOrder, sortBy, page, pageSize);
     }
 
     @PutMapping(path = "/{courier_id}/parcel")
     ResponseEntity<Void> assignParcel(@PathVariable("courier_id") long courierId, @RequestBody AssignParcelDto assignParcelDto) {
         assignParcelUseCase.assignParcelToCourier(courierId, assignParcelDto.getSelectedParcelIds());
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping(path = "/{courier_id}")
+    CourierDto getCourier(@PathVariable("courier_id") long courierId) {
+        return courierCrudOperations.getCourier(courierId);
     }
 }

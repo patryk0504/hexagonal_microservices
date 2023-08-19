@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
@@ -33,7 +34,7 @@ public class CourierEntity {
     private String vehicle;
 
     @OneToMany(
-            mappedBy = "parcel",
+            mappedBy = "courier",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
@@ -46,16 +47,37 @@ public class CourierEntity {
     )
     private Set<ParcelEntity> parcels = new HashSet<>();
 
+
+    @Enumerated(EnumType.STRING)
+    private CourierStatus status;
+
     @OneToMany(
             mappedBy = "courier",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private Set<RouteEntity> routes = new HashSet<>();
+    private Set<CourierShiftAddressEntity> shiftAddress = new HashSet<>();
 
-    @Enumerated(EnumType.STRING)
-    private CourierStatus status;
+    public void addAddress(ShiftAddressEntity address, CourierAddressRoleEnum role) {
+        CourierShiftAddressEntity courierShiftAddressEntity = new CourierShiftAddressEntity(this, address, role);
+        this.shiftAddress.add(courierShiftAddressEntity);
+        address.getShifts().add(courierShiftAddressEntity);
+    }
 
+    public void removeAddress(ShiftAddressEntity address) {
+        for (Iterator<CourierShiftAddressEntity> iterator = this.shiftAddress.iterator();
+             iterator.hasNext(); ) {
+            CourierShiftAddressEntity courierShiftAddress = iterator.next();
+
+            if (courierShiftAddress.getCourier().equals(this) &&
+                    courierShiftAddress.getAddress().equals(address)) {
+                iterator.remove();
+                courierShiftAddress.getAddress().getShifts().remove(courierShiftAddress);
+                courierShiftAddress.setAddress(null);
+                courierShiftAddress.setCourier(null);
+            }
+        }
+    }
 
     public void addDelivery(DeliveryEntity delivery) {
         deliveries.add(delivery);

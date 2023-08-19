@@ -18,6 +18,8 @@ interface ParcelDomainMapper {
     @Mapping(target = "courier", ignore = true)
     @Mapping(target = "users", ignore = true)
     @Mapping(target = "address", ignore = true)
+    @Mapping(target = "delivery", ignore = true)
+    @Mapping(target = "deliveryOrder", ignore = true)
     ParcelEntity toParcelEntity(ParcelDomain parcelDomain);
 
     ParcelDomain toParcelDomain(ParcelEntity parcelEntity);

@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Value;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 @Builder
@@ -19,7 +20,7 @@ public class CourierDomain {
     @Builder.Default
     Set<ParcelDomain> parcels = Collections.emptySet();
     @Builder.Default
-    Set<RouteDomain> routes = Collections.emptySet();
-    @Builder.Default
     CourierStatusDomain status = CourierStatusDomain.AVAILABLE;
+    @Builder.Default
+    Set<CourierShiftAddressDomain> shiftAddress = new HashSet<>();
 }
