@@ -1,0 +1,98 @@
+@startuml
+!define ENTITY entity
+!define PRIMARY_KEY PK
+!define FOREIGN_KEY FK
+
+package "public" {
+    ENTITY user_table <<ENTITY>> {
+        + id: bigint <<PRIMARY_KEY>>
+        email: character varying(255)
+        name: character varying(255)
+        password: character varying(255)
+    }
+
+    ENTITY address_table <<ENTITY>> {
+        + id: bigint <<PRIMARY_KEY>>
+        city: character varying(255)
+        country: character varying(255)
+        latitude: double precision
+        longitude: double precision
+        postal_code: character varying(255)
+        state: character varying(255)
+        street: character varying(255)
+        user_id: bigint <<FOREIGN_KEY>>
+    }
+
+    ENTITY courier_table <<ENTITY>> {
+        + id: bigint <<PRIMARY_KEY>>
+        email: character varying(255)
+        name: character varying(255)
+        phone: character varying(255)
+        status: character varying(255)
+        vehicle: character varying(255)
+    }
+
+    ENTITY delivery_table <<ENTITY>> {
+        + id: bigint <<PRIMARY_KEY>>
+        created_on: timestamp without time zone
+        delivery_order: integer
+        end_time: timestamp without time zone
+        notes: character varying(255)
+        start_time: timestamp without time zone
+        status: character varying(255)
+        courier_id: bigint <<FOREIGN_KEY>>
+    }
+
+    ENTITY parcel_address_table <<ENTITY>> {
+        + role: character varying(255)
+        + address_id: bigint <<FOREIGN_KEY>>
+        + parcel_id: bigint <<FOREIGN_KEY>>
+    }
+
+    ENTITY parcel_table <<ENTITY>> {
+        + id: bigint <<PRIMARY_KEY>>
+        delivery_order: integer
+        dimensions: character varying(255)
+        name: character varying(255)
+        status: character varying(255)
+        weight: numeric(19, 2)
+        courier_id: bigint <<FOREIGN_KEY>>
+        delivery_id: bigint <<FOREIGN_KEY>>
+    }
+
+    ENTITY courier_shift_address_table <<ENTITY>> {
+        + role: character varying(255)
+        + address_id: bigint <<FOREIGN_KEY>>
+        + courier_id: bigint <<FOREIGN_KEY>>
+    }
+
+    ENTITY shift_address_table <<ENTITY>> {
+        + id: bigint <<PRIMARY_KEY>>
+        city: character varying(255)
+        country: character varying(255)
+        latitude: double precision
+        longitude: double precision
+        postal_code: character varying(255)
+        state: character varying(255)
+        street: character varying(255)
+    }
+
+    ENTITY user_parcel_table <<ENTITY>> {
+        + role: character varying(255)
+        + user_id: bigint <<FOREIGN_KEY>>
+        + parcel_id: bigint <<FOREIGN_KEY>>
+    }
+
+    user_table --> address_table : user_id
+    address_table --> user_table : user_id
+    courier_shift_address_table --> courier_table : courier_id
+    courier_shift_address_table --> shift_address_table : address_id
+    delivery_table --> courier_table : courier_id
+    parcel_address_table --> address_table : address_id
+    parcel_address_table --> parcel_table : parcel_id
+    parcel_table --> courier_table : courier_id
+    parcel_table --> delivery_table : delivery_id
+    user_parcel_table --> user_table : user_id
+    user_parcel_table --> parcel_table : parcel_id
+}
+@enduml

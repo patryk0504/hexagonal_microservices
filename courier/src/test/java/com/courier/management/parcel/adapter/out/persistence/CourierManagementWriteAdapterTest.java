@@ -3,8 +3,6 @@ package com.courier.management.parcel.adapter.out.persistence;
 import com.courier.management.parcel.adapter.out.persistence.mapper.CourierDomainMapperImpl;
 import com.courier.management.parcel.application.port.out.CourierManagementReadPort;
 import com.courier.management.parcel.application.port.out.CourierManagementWritePort;
-import com.courier.management.parcel.application.port.out.ParcelManagementWritePort;
-import com.courier.management.parcel.application.port.out.UserManagementWritePort;
 import com.courier.management.parcel.domain.CourierDomain;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -32,18 +30,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CourierManagementWriteAdapterTest {
 
     @Autowired
-    private CourierRepository courierRepository;
-    @Autowired
-    private ParcelRepository parcelRepository;
-    @Autowired
     private CourierManagementReadPort courierManagementReadPort;
     @Autowired
     private CourierManagementWritePort courierManagementWritePort;
-    @Autowired
-    private ParcelManagementWritePort parcelManagementWritePort;
-    @Autowired
-    private UserManagementWritePort userManagementWritePort;
-
 
     @Test
     void createCourier() {

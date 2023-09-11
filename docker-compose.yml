@@ -14,7 +14,7 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - postgres
+      - spring-cloud-network
     restart: unless-stopped
 
   pgadmin:
@@ -26,15 +26,54 @@ services:
       PGADMIN_CONFIG_SERVER_MODE: 'False'
     volumes:
       - pgadmin:/var/lib/pgadmin
-
     ports:
       - "${PGADMIN_PORT:-5050}:80"
     networks:
+      - spring-cloud-network
+    restart: unless-stopped
+
+  spring-boot-app-1:
+    container_name: courier
+    build:
+      context: ./courier  # Replace with the actual directory where your first Spring Boot app is located
+      dockerfile: Dockerfile
+    expose:
+      - "8080"
+    networks:
+      - spring-cloud-network
+    depends_on:
       - postgres
     restart: unless-stopped
 
+  spring-boot-app-2:
+    container_name: route
+    build:
+      context: ./route  # Replace with the actual directory where your second Spring Boot app is located
+      dockerfile: Dockerfile
+    expose:
+      - "8081"
+    networks:
+      - spring-cloud-network
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+  nginx:
+    container_name: nginx_reverse_proxy
+    image: nginx
+    ports:
+      - "80:80"  # Expose Nginx on port 80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf  # Mount your custom Nginx configuration file
+    networks:
+      - spring-cloud-network
+    depends_on:
+      - spring-boot-app-1
+      - spring-boot-app-2
+    restart: unless-stopped
+
 networks:
-  postgres:
+  spring-cloud-network:
     driver: bridge
 
 volumes:

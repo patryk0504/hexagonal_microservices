@@ -20,7 +20,6 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-//@AutoConfigureMockMvc
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 @Import({CourierManagementReadAdapter.class, CourierDomainMapperImpl.class})
 @ActiveProfiles("test")
@@ -28,8 +27,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class CourierManagementReadAdapterTest {
 
-    @Autowired
-    private CourierRepository courierRepository;
     @Autowired
     private CourierManagementReadPort courierManagementReadPort;
     @Autowired

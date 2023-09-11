@@ -1,0 +1,28 @@
+@startuml
+!define COMPONENT component
+!define DATABASE database
+!define UI ui
+!define MICROSERVICE microservice
+
+!define LEFT_TO_RIGHT layout
+
+title System Architecture
+
+package "Docker Compose" {
+  component "NGINX Reverse Proxy" as proxy <<PROXY>>
+  component "Courier Microservice" as courier_microservice <<MICROSERVICE>>
+  component "Route Microservice" as route_microservice <<MICROSERVICE>>
+  component "React UI" as react_ui <<UI>>
+
+  database "PostgreSQL Database" as database <<DATABASE>>
+
+  courier_microservice --> database : Database Access
+
+  route_microservice --> courier_microservice : API Request (HTTP)
+
+  react_ui --> proxy : API Request
+  proxy --> courier_microservice : API Request
+  proxy --> route_microservice : API Request
+}
+
+@enduml

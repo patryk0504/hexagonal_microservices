@@ -18,19 +18,22 @@ VALUES ('2023-03-30 13:00:00', 'Delivered to the front desk', '2023-03-30 12:15:
 -- Inserting data into parcel_table
 INSERT INTO parcel_table (dimensions, name, status, weight, courier_id, delivery_id, delivery_order)
 VALUES ('20x10x5', 'Small package', 'CREATED', 1.5, 1, 1, 1),
-       ('50x50x50', 'Large package', 'CREATED', 10, 2, 1, 2);
+       ('50x50x50', 'Large package', 'CREATED', 10, 2, 1, 2),
+       ('50x50x50', 'Urgent package', 'CREATED', 10, 1, 1, 2);
 
 -- Inserting data into user_table
 INSERT INTO user_table (email, name, password)
 VALUES ('sender@example.com', 'Sender Name', 'password123'),
        ('recipient@example.com', 'Recipient Name', 'password456'),
-       ('admin@example.com', 'Admin Name', 'adminpassword');
+       ('admin@example.com', 'Admin Name', 'adminpassword'),
+       ('tom@gmail.com', 'Tom John', 'password111');
 
 -- Inserting data into address_table
 INSERT INTO address_table (city, country, latitude, longitude, postal_code, state, street, user_id)
 VALUES ('Kraków', 'Poland', 50.0620054, 19.9409846, '31-000', 'Małopolskie', 'Karmelicka 27', 1),
        ('Kraków', 'Poland', 50.0496831, 19.9458382, '31-039', 'Małopolskie', 'Długa 5', 2),
-       ('Kraków', 'Poland', 50.0594409, 19.9343033, '31-161', 'Małopolskie', 'Main Square 1', 3);
+       ('Kraków', 'Poland', 50.0594409, 19.9343033, '31-161', 'Małopolskie', 'Main Square 1', 3),
+       ('Kraków', 'Poland', 50.0769594, 19.9798345, '31-161', 'Małopolskie', 'Ugorek 16', 4);
 
 -- Inserting data into parcel_address_table
 INSERT INTO parcel_address_table (parcel_id, address_id, role)

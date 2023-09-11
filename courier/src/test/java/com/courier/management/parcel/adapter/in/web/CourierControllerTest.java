@@ -37,13 +37,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class CourierControllerTest {
 
     @MockBean private CourierCrudOperations courierCrudOperations;
-
     @MockBean private GetParcelForCourierUseCase getParcelForCourierUseCase;
-
     @MockBean private AssignParcelUseCase assignParcelUseCase;
-
     @Autowired private MockMvc mvc;
-
     @Autowired private ObjectMapper objectMapper;
 
 

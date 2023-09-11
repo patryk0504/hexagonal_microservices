@@ -1,0 +1,17 @@
+@startuml
+
+!define ACTOR circle #A9DCDF
+!define USECASE ellipse #F9EBB2
+
+actor Customer #yellow
+
+Customer --> (Place New Order) : <<include>>
+
+usecase (Place New Order) <<USECASE>> {
+  - Enter order details
+  - Select products
+  - Review order
+  - Confirm order
+}
+
+@enduml

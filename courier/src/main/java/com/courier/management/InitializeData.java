@@ -21,6 +21,7 @@ public class InitializeData {
         log.info("Init DATABASE");
         ResourceDatabasePopulator resourceDatabasePopulator = new ResourceDatabasePopulator(false, false, "UTF-8",
                 new ClassPathResource("data3.sql"));
+//        Comment before testing
         resourceDatabasePopulator.execute(dataSource);
     }
 }

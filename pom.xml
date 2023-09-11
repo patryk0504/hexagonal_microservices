@@ -100,7 +100,7 @@
   </dependencies>
 
   <build>
-    <finalName>courier-management-services</finalName>
+<!--    <finalName>courier-management-services</finalName>-->
     <pluginManagement>
       <plugins>
         <plugin>

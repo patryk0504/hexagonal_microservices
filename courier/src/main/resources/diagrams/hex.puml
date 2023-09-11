@@ -1,0 +1,37 @@
+@startuml
+
+!define DOMAIN circle #A9DCDF
+!define APPLICATION rectangle #F9EBB2
+!define ADAPTER hexagon #F6D6AD
+
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/v2.0.1/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+!theme plain
+
+Person(extUser, "External User") #white
+Boundary(cloud, "External Services") {
+  [External System 1]
+  [External System 2]
+}
+
+System_Boundary(system, "Heksagonalna Architektura") {
+  [Order] as order <<DOMAIN>>
+  [Product] as product <<DOMAIN>>
+  [Customer] as customer <<DOMAIN>>
+  [Order Service] as orderService <<APPLICATION>>
+  [Payment Service] as paymentService <<APPLICATION>>
+  [Persistence Adapter] as persistenceAdapter <<ADAPTER>>
+  [Payment Adapter] as paymentAdapter <<ADAPTER>>
+}
+
+extUser --> orderService : Places Order
+orderService --> persistenceAdapter : Save Order
+paymentService --> order : Update Order Status
+orderService --> product : Get Product Details
+orderService --> customer : Get Customer Details
+paymentAdapter --> cloud : Connects to Payment Gateway
+persistenceAdapter --> cloud : Connects to Database
+
+@enduml
