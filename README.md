@@ -1,6 +1,6 @@
 # Hexagonal microservices
 
-#Tematem aplikacji jest system umożliwiający zarządzanie przesyłkami, a jej główne funkcjonalności to:
+# Tematem aplikacji jest system umożliwiający zarządzanie przesyłkami, a jej główne funkcjonalności to:
 - Zarządzanie pracownikami (kurierami)
 - Zarządzanie usługami (przesyłki kurierskie)
 - Kreator generowania tras dla kurierów w oparciu o przypisane przesyłki i ich adresy docelowe
