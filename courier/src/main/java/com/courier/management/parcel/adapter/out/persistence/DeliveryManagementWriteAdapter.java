@@ -40,7 +40,9 @@ public class DeliveryManagementWriteAdapter implements DeliveryManagementWritePo
             throw new NotFoundException("There is no courier with given id");
         }
 
-        updateCourierShiftAddress(courierShiftAddressDomain, courier);
+        if (!courierShiftAddressDomain.isEmpty()) {
+            updateCourierShiftAddress(courierShiftAddressDomain, courier);
+        }
 
         Set<ParcelEntity> parcels = parcelRepository.findAllByIdIn(deliveryCreateDomain.getParcelIds());
         if (parcels.isEmpty() || parcels.size() != deliveryCreateDomain.getParcelIds().size()) {
@@ -55,6 +57,7 @@ public class DeliveryManagementWriteAdapter implements DeliveryManagementWritePo
         Optional<DeliveryStatusDomain> statusDomain = Optional.ofNullable(deliveryCreateDomain.getStatus());
         delivery.setStatus(statusDomain.isPresent() ? DeliveryEntity.DeliveryStatus.fromString(
                 statusDomain.get().name()) : DeliveryEntity.DeliveryStatus.IN_PROGRESS);
+        delivery.setNotes(deliveryCreateDomain.getNotes());
 
         parcels.forEach(delivery::addParcel);
 
